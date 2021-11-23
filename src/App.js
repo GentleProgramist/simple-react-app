@@ -49,53 +49,86 @@
 // // import ReactDOM from "react-dom";
 
 
-import { useState } from "react";
-// import ReactDOM from "react-dom";
+// import { useState, createContext, useContext } from "react";
+// // import ReactDOM from "react-dom";
+
+// const UserContext = createContext();
+
+// function App() {
+//   const [user, setUser] = useState("Jesse Hall");
+
+//   return (
+//     <UserContext.Provider value={user}>
+//       <h1>{`Hello ${user}!`}</h1>
+//       <Component2 user={user}/>
+//     </UserContext.Provider>
+//   );
+// }
+
+// function Component2({ user }) {
+//   return (
+//     <>
+//       <h1>Component 2</h1>
+//       <Component3 user={user} />
+//     </>
+//   );
+// }
+
+// function Component3({ user }) {
+//   return (
+//     <>
+//       <h1>Component 3</h1>
+//       <Component4 user={user} />
+//     </>
+//   );
+// }
+
+// function Component4({ user }) {
+//   return (
+//     <>
+//       <h1>Component 4</h1>
+//       <Component5 user={user} />
+//     </>
+//   );
+// }
+
+// function Component5({ user }) {
+//   return (
+//     <>
+//       <h1>Component 5</h1>
+//       <h2>{`Hello ${user} again!`}</h2>
+//     </>
+//   );
+// }
+// export default App
+import { useState, useEffect, useRef } from "react";
 
 function App() {
-  const [user, setUser] = useState("Jesse Hall");
+  const[inputValue, setInputValue] = useState("");
+  const count = useRef(0);
+  console.log(count);
+  console.log(inputValue);
 
-  return (
-    <>
-      <h1>{`Hello ${user}!`}</h1>
-      <Component2 user={user} />
-    </>
-  );
+useEffect(() => {
+  count.current = count.current + 1;
+});
+
+return(
+  <>
+    <input
+      type = "number"
+      value = {inputValue}
+      onChange = {(e) => setInputValue(e.target.value)}
+      />
+      <h1>Render Count: {count.current}</h1>
+  </>
+);
 }
 
-function Component2({ user }) {
-  return (
-    <>
-      <h1>Component 2</h1>
-      <Component3 user={user} />
-    </>
-  );
-}
-
-function Component3({ user }) {
-  return (
-    <>
-      <h1>Component 3</h1>
-      <Component4 user={user} />
-    </>
-  );
-}
-
-function Component4({ user }) {
-  return (
-    <>
-      <h1>Component 4</h1>
-      <Component5 user={user} />
-    </>
-  );
-}
-
-function Component5({ user }) {
-  return (
-    <>
-      <h1>Component 5</h1>
-      <h2>{`Hello ${user} again!`}</h2>
-    </>
-  );
-}
 export default App
+
+
+
+
+
+
