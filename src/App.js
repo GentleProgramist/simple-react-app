@@ -105,7 +105,7 @@ import { useState, useEffect, useRef } from "react";
 
 function App() {
   const[inputValue, setInputValue] = useState("");
-  const count = useRef(0);
+  const count = useRef("");
   console.log(count);
   console.log(inputValue);
 
@@ -116,7 +116,7 @@ useEffect(() => {
 return(
   <>
     <input
-      type = "number"
+      type = "text"
       value = {inputValue}
       onChange = {(e) => setInputValue(e.target.value)}
       />
