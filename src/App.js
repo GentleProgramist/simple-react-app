@@ -101,29 +101,27 @@
 //   );
 // }
 // export default App
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 
-function App() {
-  const[inputValue, setInputValue] = useState("");
-  const count = useRef("");
-  console.log(count);
-  console.log(inputValue);
+const App = () => {
+  const [data, setData] = useState(null);
 
-useEffect(() => {
-  count.current = count.current + 1;
-});
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/todos")
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  }, []);
 
-return(
-  <>
-    <input
-      type = "text"
-      value = {inputValue}
-      onChange = {(e) => setInputValue(e.target.value)}
-      />
-      <h1>Render Count: {count.current}</h1>
-  </>
-);
-}
+  return (
+    <>
+      {data &&
+        data.map((item) => {
+          return <p key={item.id}>{item.completed}</p>;
+        })}
+    </>
+  );
+};
 
 export default App
 
